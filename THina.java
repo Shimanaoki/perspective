@@ -53,6 +53,8 @@ public class THina extends JFrame{
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D)g;
 
+            setFocusable(true);
+
             g.setColor(Color.WHITE);
             if(P.getProjectionTYPE() == Perspective.FISHEYE)g.fillOval(50, 50, 500, 500);
             if(P.getProjectionTYPE() == Perspective.PANORAMA)g.fillRect(50, 50, 500, 500);
@@ -63,7 +65,6 @@ public class THina extends JFrame{
             P.projectionQube(g, x0, y0, z0, x1, y1, z1, fine);
             P.projectionQube(g, x0-Math.cos(k*0.01)*1, y0-Math.cos(k*0.01)*1, z0-Math.cos(k*0.01)*1, x1+Math.cos(k*0.01)*1, y1+Math.cos(k*0.01)*1, z1+Math.cos(k*0.01)*1, fine);
 
-
         }
 
         public void mouseClicked(MouseEvent me)
@@ -73,8 +74,6 @@ public class THina extends JFrame{
             } else if(P.getProjectionTYPE() == Perspective.PANORAMA){
                 P.switchProjection(Perspective.FISHEYE);
             }
-            System.out.println(me.getX());
-            System.out.println(me.getY());
             repaint();
         }
         public void mousePressed(MouseEvent me)
@@ -98,10 +97,10 @@ public class THina extends JFrame{
 
         public void actionPerformed(ActionEvent e)
         {
-            if(e.getSource() == timer){
+            if(e.getSource() == timer) {
                 k++;
-                repaint();
             }
+            repaint();
         }
 
         public void keyPressed(KeyEvent e)
